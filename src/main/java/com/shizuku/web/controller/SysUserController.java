@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shizuku.web.bean.SysUser;
-import com.shizuku.web.mapper.SysUserMapper;
+import com.shizuku.web.service.SysUserService;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -18,34 +18,34 @@ import io.swagger.annotations.ApiParam;
 public class SysUserController {
 
 	@Autowired
-	private SysUserMapper userMapper;
+	private SysUserService sysUserSerivce;
 
 	@RequestMapping(value = "/getUsers", method = RequestMethod.GET)
 	public List<SysUser> getUsers() {
-		List<SysUser> users = userMapper.getAll();
+		List<SysUser> users = sysUserSerivce.getAll();
 		return users;
 	}
 
 	@RequestMapping(value = "/getUser", method = RequestMethod.GET)
 	public SysUser getUser(Long id) {
-		SysUser user = userMapper.get(id);
+		SysUser user = sysUserSerivce.getById(id);
 		return user;
 	}
 
 	@ApiOperation(value = "新增数据", notes = "新增数据")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public void save(@ApiParam(name = "新增用户", required = true) SysUser user) {
-		userMapper.insert(user);
+		sysUserSerivce.save(user);
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
 	public void update(SysUser user) {
-		userMapper.update(user);
+		sysUserSerivce.saveOrUpdate(user);
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
 	public void delete(@PathVariable("id") Long id) {
-		userMapper.delete(id);
+		sysUserSerivce.removeById(id);
 	}
 
 }
