@@ -25,7 +25,7 @@
 	   FROM sys_user
 	   WHERE id = #{id}
     </select>
-
+	<!-- 
     <insert id="insert" parameterType="com.shizuku.web.bean.SysUser" >
        INSERT INTO 
        		sys_user
@@ -51,5 +51,5 @@
        WHERE 
        		 id =#{id}
     </delete>
-
+	 -->
 </mapper>

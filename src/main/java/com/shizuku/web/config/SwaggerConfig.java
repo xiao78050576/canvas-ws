@@ -18,7 +18,7 @@ public class SwaggerConfig {
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)  
           .groupName("shizuku")
-          .host("http://localhost:9090")
+          .host("localhost:9090")
           .apiInfo(apiInfo())
           .select()                                  
           .apis(RequestHandlerSelectors.basePackage("com.shizuku.web.controller"))    
